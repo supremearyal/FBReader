@@ -1,0 +1,2 @@
+This fork enables the hiding of the toolbar with F9. This
+is currently only enabled with the qt4 ui library.

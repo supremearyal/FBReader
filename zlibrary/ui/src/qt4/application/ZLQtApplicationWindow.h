@@ -84,6 +84,9 @@ friend class ZLQtToolBarAction;
 	bool myCursorIsHyperlink;
 	QCursor myStoredCursor;
 
+private Q_SLOTS:
+	void toggleWindowToolBar();
+
 private:
 	class LineEditParameter : public VisualParameter {
 

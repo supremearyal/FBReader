@@ -77,6 +77,11 @@ ZLQtApplicationWindow::ZLQtApplicationWindow(ZLApplication *application) :
 	setWindowIcon(icon);
 
 	myWindowToolBar = new QToolBar(this);
+	QAction *toggleWindowToolBarAction = new QAction(this);
+	toggleWindowToolBarAction->setShortcutContext(Qt::ApplicationShortcut);
+	toggleWindowToolBarAction->setShortcut(QKeySequence(Qt::Key_F9));
+	connect(toggleWindowToolBarAction, SIGNAL(triggered()), this, SLOT(toggleWindowToolBar()));
+	addAction(toggleWindowToolBarAction);
 	myWindowToolBar->setFocusPolicy(Qt::NoFocus);
 	myWindowToolBar->setMovable(false);
 	addToolBar(myWindowToolBar);
@@ -237,6 +242,10 @@ void ZLQtApplicationWindow::addToolbarItem(ZLToolbar::ItemPtr item) {
 	if (action != 0) {
 		myActions[&*item] = action;
 	}
+}
+
+void ZLQtApplicationWindow::toggleWindowToolBar() {
+	myWindowToolBar->setVisible(!myWindowToolBar->isVisible());
 }
 
 ZLQtRunPopupAction::ZLQtRunPopupAction(QObject *parent, shared_ptr<ZLPopupData> data, size_t index) : QAction(parent), myData(data), myIndex(index) {
